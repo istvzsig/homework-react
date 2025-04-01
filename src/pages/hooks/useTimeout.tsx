@@ -18,7 +18,7 @@ const useTimeout = (
     setTimeoutId(newTimeout);
 
     return () => clearTimeout(newTimeout);
-  }, [callback, timeoutId]);
+  }, [callback, timeoutId, delay]);
 };
 
 export default useTimeout;
