@@ -3,7 +3,7 @@ import { Product, ProductCatergory } from "@/pages/models/product";
 
 // TODO: Extract global config to .env or secret file.
 const PRODUCTS_API_URL = "/api/products";
-const TIMEOUT_DELAY_SEC = 5000;
+const TIMEOUT_DELAY_SEC = 2000;
 
 const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -34,7 +34,7 @@ const useProducts = () => {
     fetchProducts();
   }, []);
 
-  const moveToCategory = (item: Product) => {
+  const moveToCategory = (item: Product): void => {
     console.log(`Moving product to category: ${item.name}`);
 
     // Remove the item from products
@@ -56,21 +56,26 @@ const useProducts = () => {
     }
   };
 
-  const moveBackToList = (item: Product) => {
-    // Ensure we don't add the same item again if it's already in the products list
-    if (!products.some((product) => product.id === item.id)) {
-      console.log(`Moving ${item.name} back to the products list`);
+  const moveBackToList = (item: Product): void => {
+    if (!item || !item.type) return;
 
-      setProducts((prev) => [...prev, item]);
+    // Prevent adding duplicates
+    setProducts((prev) => {
+      // Check if the product already exists in the list
+      if (prev.some((product) => product.id === item.id)) {
+        console.log(`Item ${item.name} already in the list. Not adding again.`);
+        return prev; // Don't add if it already exists
+      }
 
-      setCategorized((prev) => {
-        const updatedCategory = prev[item.type]?.filter(
-          (product) => product.id !== item.id
-        );
-        console.log(`Removed ${item.name} from category ${item.type}`);
-        return { ...prev, [item.type]: updatedCategory || [] };
-      });
-    }
+      return [...prev, item];
+    });
+
+    setCategorized((prev) => {
+      const updatedCategory = prev[item.type]?.filter(
+        (product) => product.id !== item.id
+      );
+      return { ...prev, [item.type]: updatedCategory || [] };
+    });
   };
 
   const moveAllBackToList = useCallback(() => {
@@ -81,17 +86,14 @@ const useProducts = () => {
 
     itemsToMoveBack.forEach((item, index) => {
       if (item) {
-        // Add a 1-second delay for each item before moving it
         setTimeout(() => {
           console.log(`Moving item ${item.name} back to list`);
           if (!products.includes(item)) {
             moveBackToList(item);
           }
-        }, index * 1000); // 1 second delay per item
+        }, index * 1000);
       }
     });
-
-    setCategorized({});
   }, [categorized, products]);
 
   const moveAllBackToListOnTimeout = useCallback(() => {
@@ -102,7 +104,7 @@ const useProducts = () => {
     ) {
       moveAllBackToList();
     }
-  }, [lastInteractionTime, timeoutStarted, categorized]);
+  }, [lastInteractionTime, timeoutStarted, moveAllBackToList]);
 
   useEffect(() => {
     const interval = setInterval(moveAllBackToListOnTimeout, 1000); // Check every second
@@ -110,7 +112,7 @@ const useProducts = () => {
     return () => clearInterval(interval);
   }, [moveAllBackToListOnTimeout]);
 
-  const handleCategoryClick = (item: Product) => {
+  const handleCategoryClick = () => {
     // Reset the timer when a categorized item is clicked
     setLastInteractionTime(Date.now());
   };
