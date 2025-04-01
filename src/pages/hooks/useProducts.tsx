@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Product, ProductCatergory } from "../models/product";
+import { Product, ProductCatergory } from "../../models/product";
 
 // TODO: Extract global config to .env or secret file and extract the hooks
 // to the already existing .tsx files.

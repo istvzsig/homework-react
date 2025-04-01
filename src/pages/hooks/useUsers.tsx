@@ -1,7 +1,7 @@
 // src/hooks/useUsers.ts
 import { useState, useEffect } from "react";
 
-import { User, UsersByDepartment } from "../models/user";
+import { User, UsersByDepartment } from "../../models/user";
 
 const USERS_API_URL = "https://dummyjson.com/users";
 const ERROR_MSG = "Failed to fetch users";
