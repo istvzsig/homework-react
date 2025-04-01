@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { Product, ProductCatergory } from "@/pages/models/product";
 
-// TODO: Extract global config to .env or secret file.
+// TODO: Extract global config to .env or secret file and extract the hooks
+// to the already existing .tsx files.
 const PRODUCTS_API_URL = "/api/products";
 const TIMEOUT_DELAY_SEC = 2000;
 
@@ -50,7 +51,7 @@ const useProducts = () => {
     // Reset the timeout
     setLastInteractionTime(Date.now());
     if (!timeoutStarted) {
-      setTimeoutStarted(true); // Only start the timeout once
+      setTimeoutStarted(true);
       console.log("Timeout started for moving items back after 5 seconds");
       setTimeout(() => moveAllBackToList(), TIMEOUT_DELAY_SEC * 1000);
     }
@@ -61,10 +62,9 @@ const useProducts = () => {
 
     // Prevent adding duplicates
     setProducts((prev) => {
-      // Check if the product already exists in the list
       if (prev.some((product) => product.id === item.id)) {
         console.log(`Item ${item.name} already in the list. Not adding again.`);
-        return prev; // Don't add if it already exists
+        return prev;
       }
 
       return [...prev, item];
@@ -97,7 +97,6 @@ const useProducts = () => {
   }, [categorized, products]);
 
   const moveAllBackToListOnTimeout = useCallback(() => {
-    // Trigger this only if the timeout has been reached
     if (
       Date.now() - lastInteractionTime >= TIMEOUT_DELAY_SEC &&
       timeoutStarted
@@ -107,13 +106,12 @@ const useProducts = () => {
   }, [lastInteractionTime, timeoutStarted, moveAllBackToList]);
 
   useEffect(() => {
-    const interval = setInterval(moveAllBackToListOnTimeout, 1000); // Check every second
+    const interval = setInterval(moveAllBackToListOnTimeout, 1000);
 
     return () => clearInterval(interval);
   }, [moveAllBackToListOnTimeout]);
 
   const handleCategoryClick = () => {
-    // Reset the timer when a categorized item is clicked
     setLastInteractionTime(Date.now());
   };
 
