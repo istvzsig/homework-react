@@ -1,7 +1,8 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 
-import { Product, ProductCatergory } from "../../models/product";
-import useProducts from "../useProducts";
+import useProducts from "../pages/hooks/useProducts";
+
+import { ProductCatergory, Product } from "../pages/models/product";
 
 describe("useProducts Hook", () => {
   beforeEach(() => {
