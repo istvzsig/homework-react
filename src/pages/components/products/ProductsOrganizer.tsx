@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Product, ProductCatergory } from "../../models/product";
+import { ProductCatergory } from "../../models/product";
 
 import useProducts from "../../hooks/useProducts";
 
