@@ -21,6 +21,22 @@ Before you begin, ensure you have the following installed on your machine:
 
 ## Getting Started
 
+### Run the CLI menu:
+
+Add permission to the start.sh script
+
+```bash
+  chmod +x ./start.sh
+```
+
+Start the CLI menu:
+
+```bash
+./start.sh
+```
+
+### Or follow these steps below:
+
 1. **Clone the repository**:
 
 ```bash
@@ -54,19 +70,23 @@ npx jest useProducts.test.ts
 
 To test useProducts hook only.
 
+4. **Build the app**:
+
+```bash
+
+```
+
 ### Check components:
 
-Uncomment the UsersOrganizer component in the `index.ts` to see the main and optional task results in the browser:
+Uncomment the ProductsOrganizer with UsersOrganizer component in the `index.ts` to see the main and optional task results in the browser:
 
 ```bash
 import ProductsOrganizer from "./components/products/ProductsOrganizer";
-// import UsersOrganizer from "./components/users/UsersOrganizer";
 
 const Home: React.FC = () => {
   return (
     <div>
       <ProductsOrganizer />
-      {/* <UsersOrganizer /> */}
     </div>
   );
 };
