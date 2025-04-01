@@ -54,6 +54,24 @@ npx jest useProducts.test.ts
 
 To test useProducts hook only.
 
+### Check components:
+
+Uncomment the UsersOrganizer component in the `index.ts` to see the main and optional task results in the browser:
+
+```bash
+import ProductsOrganizer from "./components/products/ProductsOrganizer";
+// import UsersOrganizer from "./components/users/UsersOrganizer";
+
+const Home: React.FC = () => {
+  return (
+    <div>
+      <ProductsOrganizer />
+      {/* <UsersOrganizer /> */}
+    </div>
+  );
+};
+```
+
 ## 2. Create data from API (OPTIONAL)
 
 API from [https://dummyjson.com/users](https://dummyjson.com/users)
