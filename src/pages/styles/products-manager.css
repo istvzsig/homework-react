@@ -18,8 +18,9 @@ button.product-button {
   font-weight: 600;
   font-size: 18pt;
   margin: 0.5rem;
-  padding: 0.5rem;
-  box-shadow: inset 2px 2px #eee;
+  padding: 1rem;
+  border: 0;
+  box-shadow: inset 2px 2px 0 #eee, inset -2px -2px 0 #eee;
 }
 
 div.product-catergories {
