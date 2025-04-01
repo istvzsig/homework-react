@@ -1,6 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Product, ProductCatergory } from "@/pages/models/product";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Product, ProductCatergory } from "../models/product";
 
 const products: Product[] = [
   { type: ProductCatergory.FRUIT, name: "Apple" },

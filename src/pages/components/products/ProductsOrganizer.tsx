@@ -1,6 +1,8 @@
-import useProducts from "@/pages/hooks/useProducts";
-import { ProductCatergory } from "@/pages/models/product";
 import React from "react";
+
+import { Product, ProductCatergory } from "../../models/product";
+
+import useProducts from "../../hooks/useProducts";
 
 const ProductsOrganizer: React.FC = () => {
   const { products, categorized, moveToCategory, moveBackToList } =

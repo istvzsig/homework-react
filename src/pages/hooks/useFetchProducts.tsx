@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-
-import { Product } from "@/pages/models/product";
+import { Product } from "../models/product";
 
 const PRODUCTS_API_URL = "/api/products";
 

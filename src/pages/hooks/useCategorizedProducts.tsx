@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Product, ProductCatergory } from "@/pages/models/product";
+import { ProductCatergory, Product } from "../models/product";
 
 const useCategorizedProducts = () => {
   const [categorized, setCategorized] = useState<
