@@ -14,7 +14,7 @@ const useUsers = () => {
     const response = await fetch(USERS_API_URL);
     if (!response.ok) {
       setError(ERROR_MSG);
-      throw new Error(ERROR_MSG);
+      return;
     }
     const data = await response.json();
     setUsers(data.users);
