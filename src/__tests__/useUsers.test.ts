@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import useUsers from "../pages/hooks/useUsers";
+import useUsers from "../hooks/useUsers";
 
 describe("useUsers Hook", () => {
   beforeEach(() => {
@@ -58,7 +58,7 @@ describe("useUsers Hook", () => {
 
     await waitFor(() => expect(result.current.users.length).toBeGreaterThan(0));
 
-    const usersByDepartment = result.current.getUserByDepartment();
+    const usersByDepartment = result.current.getUsersByDepartment();
 
     expect(usersByDepartment).toEqual({
       Sales: [

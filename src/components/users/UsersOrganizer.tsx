@@ -1,19 +1,22 @@
 import React from "react";
-
-import useUsers from "../../hooks/useUsers";
+import useUsers from "@/hooks/useUsers";
+import { User } from "@/models/user";
 
 const UsersOrganizer: React.FC = () => {
-  const { getUserByDepartment } = useUsers();
+  const { error, getUsersByDepartment } = useUsers();
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
-  const groupedUserByDepartment = getUserByDepartment();
+  const groupedUsersByDepartment = getUsersByDepartment();
 
   return (
     <div className="users-manager">
       <div className="department-list">
-        {Object.entries(groupedUserByDepartment).map(([department, users]) => (
+        {Object.entries(groupedUsersByDepartment).map(([department, users]) => (
           <div key={department} className="department-section">
             <h2>{`${department}: ${users.length}`}</h2>
-            {users.map((user) => (
+            {users.map((user: User) => (
               <div className="user-card" key={user.id}>
                 <h3>{`${user.firstName} ${user.lastName}`}</h3>
                 <p>Gender: {user.gender}</p>

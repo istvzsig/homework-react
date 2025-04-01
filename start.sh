@@ -36,7 +36,7 @@ toggle_component() {
     1)
         if grep -q "UsersOrganizer" src/pages/index.tsx; then
             echo "Switching to ProductsOrganizer in index.tsx..."
-            sed -i.bak 's/import UsersOrganizer from ".\/components\/users\/UsersOrganizer"/import ProductsOrganizer from ".\/components\/products\/ProductsOrganizer"/g; s/UsersOrganizer/ProductsOrganizer/g; s/<UsersOrganizer/<ProductsOrganizer/g' src/pages/index.tsx
+            sed -i.bak 's/import UsersOrganizer from "@\/components\/users\/UsersOrganizer"/import ProductsOrganizer from "@\/components\/products\/ProductsOrganizer"/g; s/UsersOrganizer/ProductsOrganizer/g; s/<UsersOrganizer/<ProductsOrganizer/g' src/pages/index.tsx
             echo "UsersOrganizer has been replaced with ProductsOrganizer. A backup of index.tsx is saved as index.tsx.bak."
         else
             echo "ProductsOrganizer is already in use. No changes made."
@@ -45,7 +45,7 @@ toggle_component() {
     2)
         if grep -q "ProductsOrganizer" src/pages/index.tsx; then
             echo "Switching to UsersOrganizer in index.tsx..."
-            sed -i.bak 's/import ProductsOrganizer from ".\/components\/products\/ProductsOrganizer"/import UsersOrganizer from ".\/components\/users\/UsersOrganizer"/g; s/ProductsOrganizer/UsersOrganizer/g; s/<ProductsOrganizer/<UsersOrganizer/g' src/pages/index.tsx
+            sed -i.bak 's/import ProductsOrganizer from "@\/components\/products\/ProductsOrganizer"/import UsersOrganizer from "@\/components\/users\/UsersOrganizer"/g; s/ProductsOrganizer/UsersOrganizer/g; s/<ProductsOrganizer/<UsersOrganizer/g' src/pages/index.tsx
             echo "ProductsOrganizer has been replaced with UsersOrganizer. A backup of index.tsx is saved as index.tsx.bak."
         else
             echo "UsersOrganizer is already in use. No changes made."
@@ -59,7 +59,7 @@ toggle_component() {
 
 build_app() {
     echo "Starting building app for productions"
-    npx run build
+    npm run build
 }
 
 # Main menu function

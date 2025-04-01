@@ -1,7 +1,6 @@
-// src/hooks/useUsers.ts
 import { useState, useEffect } from "react";
 
-import { User, UsersByDepartment } from "../../models/user";
+import { User, UsersByDepartment } from "../models/user";
 
 const USERS_API_URL = "https://dummyjson.com/users";
 const ERROR_MSG = "Failed to fetch users";
@@ -24,7 +23,7 @@ const useUsers = () => {
     fetchUsers();
   }, []);
 
-  const getUserByDepartment = (): UsersByDepartment => {
+  const getUsersByDepartment = (): UsersByDepartment => {
     return users.reduce((acc: UsersByDepartment, user: User) => {
       if (!acc[user.company.department]) {
         acc[user.company.department] = [];
@@ -37,7 +36,7 @@ const useUsers = () => {
   return {
     users,
     error,
-    getUserByDepartment,
+    getUsersByDepartment,
   };
 };
 
