@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/hooks/__tests__/useTimeout.test.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/hooks/__tests__/useProducts.test.ts"],
   "exclude": ["node_modules"]
 }
