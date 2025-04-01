@@ -22,7 +22,7 @@ run_development_server() {
 # Function to run tests
 run_tests() {
     echo "Running tests..."
-    npx jest
+    npx jest *
 }
 
 # Function to enable or disable a component in index.tsx
@@ -57,6 +57,11 @@ toggle_component() {
     esac
 }
 
+build_app() {
+    echo "Starting building app for productions"
+    npx run build
+}
+
 # Main menu function
 main_menu() {
     echo "Welcome to the Homework React Setup Script"
@@ -66,9 +71,10 @@ main_menu() {
     echo "3. Run the development server"
     echo "4. Run tests"
     echo "5. Toggle a component in index.tsx"
-    echo "6. Exit"
+    echo "6. Build app for production"
+    echo "7. Exit"
 
-    read -p "Enter your choice [1-6]: " choice
+    read -p "Enter your choice [1-7]: " choice
 
     case $choice in
     1) clone_repository ;;
@@ -76,7 +82,8 @@ main_menu() {
     3) run_development_server ;;
     4) run_tests ;;
     5) toggle_component ;;
-    6)
+    6) build_app ;;
+    7)
         echo "Exiting..."
         exit 0
         ;;
