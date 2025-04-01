@@ -1,17 +1,9 @@
+// next.config.ts
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      // Exclude test files from being processed
-      config.module.rules.push({
-        test: /\.test\.js$/,
-        use: "ignore-loader",
-      });
-    }
-    return config;
-  },
+  distDir: "build",
 };
 
 export default nextConfig;
