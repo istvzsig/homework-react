@@ -10,7 +10,8 @@ clone_repository() {
 # Function to install dependencies
 install_dependencies() {
     echo "Installing dependencies..."
-    npm install --save-dev --force
+    npm install
+    npm fund
 }
 
 # Function to run the development server
