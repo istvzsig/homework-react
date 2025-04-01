@@ -1,0 +1,35 @@
+div.users-manager {
+  display: flex;
+  overflow-x: scroll;
+}
+
+div.department-list {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+div.user-card {
+  background-color: white;
+  font-weight: 600;
+  border: 0;
+  box-shadow: inset 2px 2px 0 #eee, inset -2px -2px 0 #eee;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+div.user-card p {
+  font-size: 12pt;
+  font-weight: 400;
+  padding: 3px 0;
+}
+
+div.user-departments {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 1rem;
+  overflow-y: scroll;
+}
