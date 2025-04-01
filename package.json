@@ -1,7 +1,6 @@
 {
-  "name": "seven-s-assessment",
+  "name": "home-test-react",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev -p 5555",
     "build": "next build",
@@ -20,7 +19,6 @@
     "@babel/preset-typescript": "^7.27.0",
     "@eslint/eslintrc": "^3",
     "@testing-library/react": "^16.2.0",
-    "@testing-library/react-hooks": "^8.0.1",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^19",
