@@ -2,12 +2,13 @@ import React from "react";
 
 import useProducts from "@/hooks/useProducts";
 
-import { Product } from "@/models/product";
+import { Product, ProductCatergory } from "@/models/product";
 
 const ProductsOrganizer: React.FC = () => {
-  const { products, moveToCategory } = useProducts();
+  const { products, moveToCategory, categorized, moveBackToList } =
+    useProducts();
 
-  // const allCategories = Object.values(ProductCatergory);
+  const allCategories = Object.values(ProductCatergory);
 
   return (
     <div className="products-manager">
@@ -23,7 +24,7 @@ const ProductsOrganizer: React.FC = () => {
         ))}
       </div>
       <div className="product-catergories">
-        {/* {allCategories.map((category) => (
+        {allCategories.map((category) => (
           <div className="product-category" key={category}>
             <h2 className="category-heading">{`${category}s: ${
               categorized[category]?.length > 0
@@ -40,7 +41,7 @@ const ProductsOrganizer: React.FC = () => {
               </button>
             ))}
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );
