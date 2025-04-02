@@ -1,5 +1,8 @@
 // jest.config.js
 module.exports = {
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
   preset: "ts-jest", // You can keep this if you want to use the ts-jest preset
   testEnvironment: "jest-environment-jsdom",
   transform: {
