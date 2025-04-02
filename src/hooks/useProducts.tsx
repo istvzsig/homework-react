@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-import { Product, ProductCatergory } from "@/models/product";
+import { Product, ProductCategory } from "@/models/product";
 import { PRODUCTS_API_URL, TIMEOUT_DELAY_MS } from "@/constants";
 
 const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categorized, setCategorized] = useState<
-    Record<ProductCatergory, Product[]>
+    Record<ProductCategory, Product[]>
   >({
-    [ProductCatergory.FRUIT]: [],
-    [ProductCatergory.VEGETABLE]: [],
+    [ProductCategory.FRUIT]: [],
+    [ProductCategory.VEGETABLE]: [],
   });
 
   const [lastInteractionTime, setLastInteractionTime] = useState<number>(

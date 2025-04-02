@@ -2,7 +2,7 @@ import { renderHook, act, waitFor } from "@testing-library/react";
 
 import useProducts from "../hooks/useProducts";
 
-import { ProductCatergory, Product } from "../models/product";
+import { ProductCategory, Product } from "../models/product";
 
 describe("useProducts Hook", () => {
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe("useProducts Hook", () => {
       Promise.resolve({
         json: () =>
           Promise.resolve([
-            { id: 1, name: "Apple", type: ProductCatergory.FRUIT },
+            { id: 1, name: "Apple", type: ProductCategory.FRUIT },
           ]),
       })
     ) as jest.Mock;
@@ -37,7 +37,7 @@ describe("useProducts Hook", () => {
     const testProduct: Product = {
       id: 2,
       name: "Carrot",
-      type: ProductCatergory.VEGETABLE,
+      type: ProductCategory.VEGETABLE,
     };
 
     act(() => {
@@ -45,7 +45,7 @@ describe("useProducts Hook", () => {
     });
 
     expect(result.current.products).toHaveLength(0);
-    expect(result.current.categorized[ProductCatergory.VEGETABLE]).toHaveLength(
+    expect(result.current.categorized[ProductCategory.VEGETABLE]).toHaveLength(
       1
     );
   });
@@ -56,7 +56,7 @@ describe("useProducts Hook", () => {
     const testProduct: Product = {
       id: 3,
       name: "Banana",
-      type: ProductCatergory.FRUIT,
+      type: ProductCategory.FRUIT,
     };
 
     act(() => {
@@ -65,7 +65,7 @@ describe("useProducts Hook", () => {
     });
 
     expect(result.current.products).toHaveLength(1);
-    expect(result.current.categorized[ProductCatergory.FRUIT]).toHaveLength(0);
+    expect(result.current.categorized[ProductCategory.FRUIT]).toHaveLength(0);
   });
 
   it("triggers timeout and moves products back", async () => {
@@ -76,14 +76,14 @@ describe("useProducts Hook", () => {
     const testProduct: Product = {
       id: 4,
       name: "Tomato",
-      type: ProductCatergory.VEGETABLE,
+      type: ProductCategory.VEGETABLE,
     };
 
     act(() => {
       result.current.moveToCategory(testProduct);
     });
 
-    expect(result.current.categorized[ProductCatergory.VEGETABLE]).toHaveLength(
+    expect(result.current.categorized[ProductCategory.VEGETABLE]).toHaveLength(
       1
     );
 
@@ -92,7 +92,7 @@ describe("useProducts Hook", () => {
     });
 
     await waitFor(() => expect(result.current.products).toHaveLength(1));
-    expect(result.current.categorized[ProductCatergory.VEGETABLE]).toHaveLength(
+    expect(result.current.categorized[ProductCategory.VEGETABLE]).toHaveLength(
       0
     );
 

@@ -1,10 +1,10 @@
 export interface Product {
   id?: number;
   name: string;
-  type: ProductCatergory;
+  type: ProductCategory;
 }
 
-export enum ProductCatergory {
+export enum ProductCategory {
   FRUIT = "Fruit",
   VEGETABLE = "Vegetable",
 }

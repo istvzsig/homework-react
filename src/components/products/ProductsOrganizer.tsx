@@ -2,13 +2,13 @@ import React from "react";
 
 import useProducts from "@/hooks/useProducts";
 
-import { Product, ProductCatergory } from "@/models/product";
+import { Product, ProductCategory } from "@/models/product";
 
 const ProductsOrganizer: React.FC = () => {
   const { products, moveToCategory, categorized, moveBackToList } =
     useProducts();
 
-  const allCategories = Object.values(ProductCatergory);
+  const allCategories = Object.values(ProductCategory);
 
   return (
     <div className="products-manager">
