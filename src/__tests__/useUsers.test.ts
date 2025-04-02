@@ -49,7 +49,9 @@ describe("useUsers Hook", () => {
     const { result } = renderHook(() => useUsers());
 
     await waitFor(() =>
-      expect(result.current.error).toBe("Failed to fetch users")
+      expect(result.current.error?.message).toBe(
+        "[ERR undefined]:Failed to fetch users from https://dummyjson.com/users"
+      )
     );
   });
 
