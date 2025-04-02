@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-
 import { Product } from "@/models/product";
-
-import useLocalStorage from "./useLocalStorage";
+import useCache from "./useCache";
 import { PRODUCTS_API_URL } from "@/constants";
 
 const useShouldFetch = (initialValue: boolean = false) => {
@@ -13,7 +11,7 @@ const useShouldFetch = (initialValue: boolean = false) => {
 const useFetchProducts = (url: string = PRODUCTS_API_URL) => {
   const [products, setProducts] = useState<Product[]>([]);
   const { shouldFetch, setShouldFetch } = useShouldFetch(false);
-  const { cacheData, setLocalStorage } = useLocalStorage(url);
+  const { cacheData, setLocalStorage } = useCache(url);
 
   useEffect(() => {
     if (cacheData === null) {

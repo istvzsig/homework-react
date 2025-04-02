@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Product } from "@/models/product";
 
-const useLocalStorage = (url: string) => {
+const useCache = (url: string) => {
   const [cacheData, setCacheData] = useState<Product[] | null>(null);
 
   const loadFromLocalStorage = () => {
@@ -33,4 +33,4 @@ const useLocalStorage = (url: string) => {
   };
 };
 
-export default useLocalStorage;
+export default useCache;
