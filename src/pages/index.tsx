@@ -1,10 +1,10 @@
 import React from "react";
-import UsersOrganizer from "@/components/users/UsersOrganizer";
+import ProductsOrganizer from "@/components/products/ProductsOrganizer";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <UsersOrganizer />
+      <ProductsOrganizer />
     </div>
   );
 };
