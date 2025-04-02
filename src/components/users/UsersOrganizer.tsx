@@ -1,11 +1,11 @@
 import React from "react";
-import useUsers from "@/hooks/useUsers";
+import useUsers from "@/components/users/useUsers";
 import { User } from "@/models/user";
 
 const UsersOrganizer: React.FC = () => {
   const { error, getUsersByDepartment } = useUsers();
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>{error.message}</div>;
   }
 
   const groupedUsersByDepartment = getUsersByDepartment();

@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import useUsers from "../hooks/useUsers";
+import useUsers from "../components/users/useUsers";
 
 describe("useUsers Hook", () => {
   beforeEach(() => {

@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 
-import { User, UsersByDepartment } from "../models/user";
-
-const USERS_API_URL = "https://dummyjson.com/users";
-const ERROR_MSG = "Failed to fetch users";
+import { User, UsersByDepartment } from "@/models/user";
+import useError from "@/hooks/useError";
+import { USERS_API_URL } from "@/constants";
 
 const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const { error, setError } = useError();
 
   const fetchUsers = async () => {
     const response = await fetch(USERS_API_URL);
+
     if (!response.ok) {
-      setError(ERROR_MSG);
+      setError({
+        status: response.status,
+        message: `[ERR ${response.status}]:Failed to fetch users from ${USERS_API_URL}`,
+      });
       return;
     }
     const data = await response.json();
