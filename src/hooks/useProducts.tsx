@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { Product, ProductCatergory } from "../models/product";
-
-const PRODUCTS_API_URL = "/api/products";
-const TIMEOUT_DELAY_SEC = 2000;
+import { Product, ProductCatergory } from "@/models/product";
+import { PRODUCTS_API_URL, TIMEOUT_DELAY_MS } from "@/constants";
 
 const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -51,7 +49,7 @@ const useProducts = () => {
     if (!timeoutStarted) {
       setTimeoutStarted(true);
       console.log("Timeout started for moving items back after 5 seconds");
-      setTimeout(() => moveAllBackToList(), TIMEOUT_DELAY_SEC * 1000);
+      setTimeout(() => moveAllBackToList(), TIMEOUT_DELAY_MS * 1000);
     }
   };
 
@@ -96,7 +94,7 @@ const useProducts = () => {
 
   const moveAllBackToListOnTimeout = useCallback(() => {
     if (
-      Date.now() - lastInteractionTime >= TIMEOUT_DELAY_SEC &&
+      Date.now() - lastInteractionTime >= TIMEOUT_DELAY_MS &&
       timeoutStarted
     ) {
       moveAllBackToList();
@@ -104,7 +102,7 @@ const useProducts = () => {
   }, [lastInteractionTime, timeoutStarted, moveAllBackToList]);
 
   useEffect(() => {
-    const interval = setInterval(moveAllBackToListOnTimeout, 1000);
+    const interval = setInterval(moveAllBackToListOnTimeout, TIMEOUT_DELAY_MS);
 
     return () => clearInterval(interval);
   }, [moveAllBackToListOnTimeout]);
