@@ -42,4 +42,4 @@ a {
 }
 
 @import url(./products-manager.css);
-@import url(./users-manager.css);
+@import url(../components/users/users-manager.css);

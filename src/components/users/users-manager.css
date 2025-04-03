@@ -1,6 +1,7 @@
 div.users-manager {
   display: flex;
   overflow-x: scroll;
+  flex-wrap: wrap;
 }
 
 div.department-list {
@@ -32,4 +33,21 @@ div.user-departments {
   width: 100%;
   margin: 1rem;
   overflow-y: scroll;
+}
+
+p.process-data-button {
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+p.process-data-button button {
+  padding: 1rem;
+  margin: 2rem auto;
+  background-color: blueviolet;
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 21pt;
 }
