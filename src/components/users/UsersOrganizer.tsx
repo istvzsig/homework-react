@@ -1,6 +1,6 @@
 import React from "react";
 import useUsers from "@/components/users/useUsers";
-import { User } from "@/models/user";
+import { User } from "@/models/user.model";
 
 const UsersOrganizer: React.FC = () => {
   const { error, getUsersByDepartment, updateUsersByDepartment } = useUsers();

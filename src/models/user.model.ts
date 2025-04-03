@@ -9,28 +9,14 @@ export interface User {
   company: { department: string };
 }
 
-export type UsersByDepartment = Record<string, User[]>;
-
-enum HairColors {
-  BLACK = "Black",
-  BLOND = "Blond",
-  CHESTNUT = "Chestnut",
-  BROWN = "Brown",
-}
-
 interface HairTypeCount {
-  [HairColors.BLACK]: number;
-  [HairColors.BLOND]: number;
-  [HairColors.CHESTNUT]: number;
-  [HairColors.BROWN]: number;
+  [color: string]: number;
 }
 
 type Department = string;
 type UserNameKey = `${User["firstName"]}${User["lastName"]}`;
 
-export interface AddressUser {
-  [key: UserNameKey]: User["address"]["postalCode"];
-}
+export type UsersByDepartment = Record<Department, User[]>;
 
 export type GroupedUsersByDepartment = Record<
   Department,
@@ -38,7 +24,9 @@ export type GroupedUsersByDepartment = Record<
     male: number;
     female: number;
     ageRange: string;
-    hair: HairTypeCount | null;
-    addressUser: AddressUser;
+    hair: HairTypeCount;
+    addressUser: {
+      [key: UserNameKey]: User["address"]["postalCode"];
+    };
   }
 >;
