@@ -21,8 +21,14 @@ const mapAddressesToPostalCodeReducer = (users: User[]) => {
   }, {} as Record<string, User["address"]["postalCode"]>);
 };
 
+const getAgeRangeReducer = (users: User[]) => {
+  const ages = users.map((u) => u.age);
+  return `${Math.min(...ages)}-${Math.max(...ages)}`;
+};
+
 export {
   genderCountReducer,
   hairColorsCountReducer,
   mapAddressesToPostalCodeReducer,
+  getAgeRangeReducer,
 };

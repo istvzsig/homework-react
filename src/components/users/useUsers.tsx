@@ -13,6 +13,7 @@ import {
   genderCountReducer,
   hairColorsCountReducer,
   mapAddressesToPostalCodeReducer,
+  getAgeRangeReducer,
 } from "@/reducers/users.reducer";
 
 const useUsers = () => {
@@ -56,7 +57,7 @@ const useUsers = () => {
         const users = usersByDepartment[department];
         acc[department] = {
           ...genderCountReducer(users),
-          ageRange: "",
+          ageRange: getAgeRangeReducer(users),
           hair: hairColorsCountReducer(users),
           addressUser: mapAddressesToPostalCodeReducer(users),
         };
