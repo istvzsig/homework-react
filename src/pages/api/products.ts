@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { Product, ProductCategory } from "@/models/product";
+import { Product, ProductCategory } from "@/models/product.model";
 
 const products: Product[] = [
   { type: ProductCategory.FRUIT, name: "Apple" },

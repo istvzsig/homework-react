@@ -9,13 +9,13 @@ export interface User {
   company: { department: string };
 }
 
-interface HairTypeCount {
+export interface HairTypeCount {
   [color: string]: number;
 }
 
-type Department = string;
-type UserNameKey = `${User["firstName"]}${User["lastName"]}`;
-
+export type UserCount = number;
+export type Department = string;
+export type UserNameKey = `${User["firstName"]}${User["lastName"]}`;
 export type UsersByDepartment = Record<Department, User[]>;
 
 export type GroupedUsersByDepartment = Record<

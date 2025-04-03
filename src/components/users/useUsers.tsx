@@ -4,17 +4,19 @@ import {
   User,
   UsersByDepartment,
   GroupedUsersByDepartment,
+  Department,
+  UserCount,
 } from "@/models/user.model";
 
 import useError from "@/hooks/useError";
 import { USERS_API_URL } from "@/constants";
 
 import {
-  genderCountReducer,
-  hairColorsCountReducer,
+  mapGenderCount,
+  mapHairColorCount,
   mapAddressesToPostalCodeReducer,
-  getAgeRangeReducer,
-} from "@/reducers/users.reducer";
+  mapAgeRange,
+} from "@/mapping/users.mapping";
 
 const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -48,32 +50,39 @@ const useUsers = () => {
       }
       acc[department].push(user);
       return acc;
-    }, {});
+    }, {} as UsersByDepartment);
   };
 
-  const updateUsersByDepartment = (usersByDepartment: UsersByDepartment) => {
-    const result = Object.keys(usersByDepartment).reduce(
+  const getUsersGroupedTraits = (
+    users: UsersByDepartment
+  ): GroupedUsersByDepartment => {
+    return Object.keys(users).reduce(
       (acc: GroupedUsersByDepartment, department) => {
-        const users = usersByDepartment[department];
+        const groupedUsers = users[department];
         acc[department] = {
-          ...genderCountReducer(users),
-          ageRange: getAgeRangeReducer(users),
-          hair: hairColorsCountReducer(users),
-          addressUser: mapAddressesToPostalCodeReducer(users),
+          ...mapGenderCount(groupedUsers),
+          ageRange: mapAgeRange(groupedUsers),
+          hair: mapHairColorCount(groupedUsers),
+          addressUser: mapAddressesToPostalCodeReducer(groupedUsers),
         };
         return acc;
       },
       {} as GroupedUsersByDepartment
     );
-    console.log(result);
-    return result;
+  };
+
+  const getTotalUsersCountByDepartment = (
+    values: GroupedUsersByDepartment[Department]
+  ): UserCount => {
+    return values.male + values.female;
   };
 
   return {
     users,
     error,
     getUsersByDepartment,
-    updateUsersByDepartment,
+    getUsersGroupedTraits,
+    getTotalUsersCountByDepartment,
   };
 };
 

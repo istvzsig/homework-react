@@ -2,7 +2,7 @@ import React from "react";
 
 import useProducts from "@/components/products/useProducts";
 
-import { Product, ProductCategory } from "@/models/product";
+import { Product, ProductCategory } from "@/models/product.model";
 import useCategorized from "@/hooks/useCategorized";
 
 const ProductsOrganizer: React.FC = () => {

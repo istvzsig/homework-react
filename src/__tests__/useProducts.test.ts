@@ -1,5 +1,5 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
-import { ProductCategory, Product } from "../models/product";
+import { ProductCategory, Product } from "../models/product.model";
 import useProducts from "@/components/products/useProducts";
 import useCategorized from "@/hooks/useCategorized";
 

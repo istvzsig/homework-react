@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Product } from "@/models/product";
+import { Product } from "@/models/product.model";
 
 const useCache = (url: string) => {
   const [cacheData, setCacheData] = useState<Product[] | null>(null);

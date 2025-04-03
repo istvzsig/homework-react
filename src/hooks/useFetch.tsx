@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Product } from "@/models/product";
+import { Product } from "@/models/product.model";
 import useCache from "./useCache";
 import { PRODUCTS_API_URL } from "@/constants";
 

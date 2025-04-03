@@ -1,17 +1,26 @@
 import { User } from "@/models/user.model";
 
-const genderCountReducer = (users: User[]) => {
+const mapGenderCount = (users: User[]) => {
   return {
     male: users.filter((u) => u.gender === "male").length,
     female: users.filter((u) => u.gender === "female").length,
   };
 };
 
-const hairColorsCountReducer = (users: User[]) => {
+const mapHairColorCount = (users: User[]) => {
   return users.reduce((acc, user) => {
-    acc[user.hair.color] = (acc[user.hair.color] || 0) + 1;
+    const hairColor = user.hair.color;
+    acc[hairColor] = (acc[hairColor] || 0) + 1;
+    // ref.current.style.color = "red";
     return acc;
   }, {} as Record<User["hair"]["color"], number>);
+};
+
+const mapAgeRange = (users: User[]) => {
+  const ages = users.map((u) => u.age);
+  return ages.length > 1
+    ? `${Math.min(...ages)}-${Math.max(...ages)}`
+    : ages[0].toString();
 };
 
 const mapAddressesToPostalCodeReducer = (users: User[]) => {
@@ -21,14 +30,9 @@ const mapAddressesToPostalCodeReducer = (users: User[]) => {
   }, {} as Record<string, User["address"]["postalCode"]>);
 };
 
-const getAgeRangeReducer = (users: User[]) => {
-  const ages = users.map((u) => u.age);
-  return `${Math.min(...ages)}-${Math.max(...ages)}`;
-};
-
 export {
-  genderCountReducer,
-  hairColorsCountReducer,
+  mapGenderCount,
+  mapHairColorCount,
   mapAddressesToPostalCodeReducer,
-  getAgeRangeReducer,
+  mapAgeRange,
 };

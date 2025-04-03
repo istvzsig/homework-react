@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { ProductCategory, Product } from "@/models/product";
+import { ProductCategory, Product } from "@/models/product.model";
 import { TIMEOUT_DELAY_MS } from "@/constants";
 
 import useInteractionTime from "./userInteractionTime";
