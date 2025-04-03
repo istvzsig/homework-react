@@ -1,13 +1,19 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 
 import {
   User,
-  // UsersByDepartment,
-  GroupedUsersByDepartment,
   UsersByDepartment,
-} from "@/models/user";
+  GroupedUsersByDepartment,
+} from "@/models/user.model";
+
 import useError from "@/hooks/useError";
 import { USERS_API_URL } from "@/constants";
+
+import {
+  genderCountReducer,
+  hairColorsCountReducer,
+  mapAddressesToPostalCodeReducer,
+} from "@/reducers/users.reducer";
 
 const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -30,6 +36,7 @@ const useUsers = () => {
 
   useEffect(() => {
     fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getUsersByDepartment = (): UsersByDepartment => {
@@ -44,30 +51,21 @@ const useUsers = () => {
   };
 
   const updateUsersByDepartment = (usersByDepartment: UsersByDepartment) => {
-    const result = Object.keys(usersByDepartment).map((department) => {
-      const users = usersByDepartment[department];
-      return users.reduce((acc) => {
+    const result = Object.keys(usersByDepartment).reduce(
+      (acc: GroupedUsersByDepartment, department) => {
+        const users = usersByDepartment[department];
         acc[department] = {
-          male: users.filter((u) => u.gender === "male").length,
-          female: users.filter((u) => u.gender === "female").length,
-          ageRange: 0,
-          hair: {
-            Black: users.filter((u) => u.hair.color === "Black").length,
-            Blond: users.filter((u) => u.hair.color === "Blond").length,
-            Chestnut: users.filter((u) => u.hair.color === "Chestnut").length,
-            Brown: users.filter((u) => u.hair.color === "Brown").length,
-          },
-          addressUser: users.reduce((acc: GroupedUsersByDepartment, u) => {
-            acc[u.firstName + u.lastName] = u.address.postalCode;
-
-            return acc;
-          }, {}),
+          ...genderCountReducer(users),
+          ageRange: "",
+          hair: hairColorsCountReducer(users),
+          addressUser: mapAddressesToPostalCodeReducer(users),
         };
         return acc;
-      }, {});
-    });
-
+      },
+      {} as GroupedUsersByDepartment
+    );
     console.log(result);
+    return result;
   };
 
   return {
