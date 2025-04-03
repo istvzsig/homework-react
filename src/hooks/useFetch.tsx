@@ -10,8 +10,8 @@ const useShouldFetch = (initialValue: boolean = false) => {
 
 const useFetchProducts = (url: string = PRODUCTS_API_URL) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const { shouldFetch, setShouldFetch } = useShouldFetch(false);
   const { cacheData, setLocalStorage } = useCache(url);
+  const { shouldFetch, setShouldFetch } = useShouldFetch(false);
 
   useEffect(() => {
     if (cacheData === null) {

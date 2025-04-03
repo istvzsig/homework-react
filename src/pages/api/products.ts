@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { Product, ProductCategory } from "../../models/product";
+import { Product, ProductCategory } from "@/models/product";
 
 const products: Product[] = [
   { type: ProductCategory.FRUIT, name: "Apple" },
@@ -20,6 +20,5 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Product[]>
 ) {
-  console.log(req, res);
   res.status(200).json(products);
 }

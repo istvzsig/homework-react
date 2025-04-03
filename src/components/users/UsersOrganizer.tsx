@@ -3,7 +3,7 @@ import useUsers from "@/components/users/useUsers";
 import { User } from "@/models/user";
 
 const UsersOrganizer: React.FC = () => {
-  const { error, getUsersByDepartment } = useUsers();
+  const { error, getUsersByDepartment, updateUsersByDepartment } = useUsers();
   if (error) {
     return <div>{error.message}</div>;
   }
@@ -11,7 +11,10 @@ const UsersOrganizer: React.FC = () => {
   const groupedUsersByDepartment = getUsersByDepartment();
 
   return (
-    <div className="users-manager">
+    <div
+      className="users-manager"
+      onClick={(_) => updateUsersByDepartment(groupedUsersByDepartment)}
+    >
       <div className="department-list">
         {Object.entries(groupedUsersByDepartment).map(([department, users]) => (
           <div key={department} className="department-section">

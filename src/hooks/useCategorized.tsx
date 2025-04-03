@@ -19,7 +19,7 @@ const useCategorized = (
     [ProductCategory.VEGETABLE]: [],
   });
 
-  const moveToCategory = (item: Product) => {
+  const moveToCategory = (item: Product): void => {
     setProducts((prev) => prev.filter((product) => product.id !== item.id));
 
     setCategorized((prev) => {
@@ -29,7 +29,7 @@ const useCategorized = (
 
     if (!timeoutStarted) {
       setTimeoutStarted(true);
-      setTimeout(() => moveAllBackToList(), TIMEOUT_DELAY_MS * 1000);
+      setTimeout(() => moveBackToList(item), TIMEOUT_DELAY_MS * 1000);
     }
   };
 
@@ -53,10 +53,7 @@ const useCategorized = (
   };
 
   const moveAllBackToList = useCallback(() => {
-    console.log("Timeout triggered - Moving items back to the list");
-
     const itemsToMoveBack = Object.values(categorized).flat();
-    console.log("Items to move back:", itemsToMoveBack);
 
     itemsToMoveBack.forEach((item, index) => {
       if (item) {
