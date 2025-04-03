@@ -41,5 +41,5 @@ a {
   }
 }
 
-@import url(./products-manager.css);
-@import url(../components/users/users-manager.css);
+@import url(../components/products/products-organizer.css);
+@import url(../components/users/users-organizer.css);

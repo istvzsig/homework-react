@@ -6,6 +6,7 @@ div.users-manager {
 
 div.department-list {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   gap: 20px;
 }
@@ -39,6 +40,7 @@ p.process-data-button {
   position: sticky;
   top: 0;
   text-align: center;
+  width: 100%;
 }
 p.process-data-button button {
   padding: 1rem;
